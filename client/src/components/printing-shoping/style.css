@@ -1,0 +1,60 @@
+.book-conteiner{
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart{
+    margin-top: 15px ;
+    background: rgba(249, 249, 249, 0.98);
+    width: 397.99px;
+    height: 556px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.img-conteiner{
+    background-color: grey;
+    width: 200px;
+    height: 2500px;
+    margin-top: 10px ;
+}
+.cart .name{
+    text-transform: uppercase;
+    margin: 0;
+    font-family: Oswald;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    color: #000000;
+}
+.cart .author{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.66)
+}
+.cart .price{
+    font-family: Oswald;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    color: #FF6825;
+    padding: 0 0 42px 0;
+}
+.cart .price span{
+    color: crimson;
+    margin-left: 4px;
+    font-size: 18px;
+}
+.cart:hover{
+    background-color:  #FF6825;
+}

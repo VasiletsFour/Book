@@ -1,0 +1,29 @@
+.bar{
+    margin-top: 15px;
+    background: #F8F8F8;
+    width: 397.99px;
+    height: 556px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.radio-input{
+    width: 260px;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.radio-conteiner{
+    display: flex;
+    flex-direction: row;
+}
+.radio-conteiner input{
+    width: 10px;
+    height: 10px;
+}
+.radio-conteiner p{
+    margin: 0;
+}

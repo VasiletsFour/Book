@@ -1,0 +1,14 @@
+{
+    "title": "AuthorRequest",
+    "properties": {
+        "name": {
+            "type": "string",
+            "minLenght": 6,
+            "maxLenght": 512
+        }
+    },
+    "additionalProperties": false,
+    "requierd":[
+        "name"
+    ]
+}

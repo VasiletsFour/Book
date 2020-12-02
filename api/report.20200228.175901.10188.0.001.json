@@ -1,0 +1,145 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20200228.175901.10188.0.001.json",
+    "dumpEventTime": "2020-02-28T17:59:01Z",
+    "dumpEventTimeStamp": "1582905541676",
+    "processId": 10188,
+    "cwd": "C:\\_Projects\\BookShop",
+    "commandLine": [
+      "C:\\_Projects\\BookShop\\node_modules\\.bin\\\\..\\node\\bin\\node",
+      "C:\\_Projects\\BookShop\\node_modules\\.bin\\\\..\\ts-node\\dist\\bin.js",
+      "./src/index.ts"
+    ],
+    "nodejsVersion": "v13.8.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "13.8.0",
+      "v8": "7.9.317.25-node.28",
+      "uv": "1.34.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "79",
+      "nghttp2": "1.40.0",
+      "napi": "5",
+      "llhttp": "2.0.4",
+      "openssl": "1.1.1d",
+      "cldr": "36.0",
+      "icu": "65.1",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v13.8.0/node-v13.8.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v13.8.0/node-v13.8.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v13.8.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.18362",
+    "osVersion": "Windows 10 Pro",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i5-7600 CPU @ 3.50GHz",
+        "speed": 3504,
+        "user": 7532468,
+        "nice": 0,
+        "sys": 2728640,
+        "idle": 175910312,
+        "irq": 360078
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-7600 CPU @ 3.50GHz",
+        "speed": 3504,
+        "user": 8758156,
+        "nice": 0,
+        "sys": 2397890,
+        "idle": 175015125,
+        "irq": 79312
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-7600 CPU @ 3.50GHz",
+        "speed": 3504,
+        "user": 9690703,
+        "nice": 0,
+        "sys": 1785765,
+        "idle": 174694703,
+        "irq": 51093
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-7600 CPU @ 3.50GHz",
+        "speed": 3504,
+        "user": 8171578,
+        "nice": 0,
+        "sys": 1844859,
+        "idle": 176154734,
+        "irq": 45796
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "30:9c:23:0c:40:66",
+        "address": "2a0c:3a81:11:2279:e87e:e3b:5479:9311",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "30:9c:23:0c:40:66",
+        "address": "2a0c:3a81:11:2279:2945:5dc:417d:b450",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "30:9c:23:0c:40:66",
+        "address": "2a0c:3a81:11:2279:3186:8215:2979:c652",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "30:9c:23:0c:40:66",
+        "address": "2a0c:3a81:11:2279:58ff:b1e6:8fc7:c0fb",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "30:9c:23:0c:40:66",
+        "address": "fe80::e87e:e3b:5479:9311",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 6
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "30:9c:23:0c:40:66",
+        "address": "10.10.3.178",
+        "netmask": "255.255.252.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:f
