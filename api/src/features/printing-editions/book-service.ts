@@ -1,11 +1,11 @@
-import { validateWithJsonSchema } from "../utils/validateWithJsonSchema";
+import { isValidated } from "../../helpers/validate/validate";
 import BookRequestSchema from "../printing-editions/operations/BookRequestSchema.json";
 import { createBook } from "../printing-editions/saved-book";
 import {logger} from "../utils/logger";
 
 export async function create(book: object) {
     logger.info(`>>>> bookService.create() with: book = ${book}`);
-    const validationResult = validateWithJsonSchema(book, BookRequestSchema);
+    const validationResult = isValidated(book, BookRequestSchema);
 
     if (!validationResult.valid) {
         logger.error(`>>>> bookService.create(), invalid daata: ${validationResult.errors}`)

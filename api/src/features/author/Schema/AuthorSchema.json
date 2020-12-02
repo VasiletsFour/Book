@@ -1,5 +1,5 @@
 {
-    "title": "AuthorRequest",
+    "title": "Author",
     "properties": {
         "name": {
             "type": "string",

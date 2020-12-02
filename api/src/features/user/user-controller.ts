@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import User from "../shared/db-models/user-models"
+import User from "../../db/models/UserModels"
 
 export const user = async (req: Request, res: Response) => {
     const user = await User.find().sort({ name: 1 })

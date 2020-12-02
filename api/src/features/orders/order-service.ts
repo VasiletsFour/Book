@@ -1,4 +1,4 @@
-import { validateWithJsonSchema } from "../utils/validateWithJsonSchema";
+import { validateWithJsonSchema } from "../../helpers/validate/validate";
 import OrderRequestSchema from "./operations/OrderRequestSchema.json";
 import { createOrder } from "./saved-order";
 import { logger } from "../utils/logger";

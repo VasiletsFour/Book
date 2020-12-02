@@ -1,4 +1,4 @@
-import Editions from "../shared/db-models/editions-models"
+import Editions from "../../db/models/EditionsModels"
 
 export const createBook = async (book: any) => {
 

@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import Editions from "../shared/db-models/editions-models"
+import Editions from "../../db/models/EditionsModels"
 import { create } from "./book-service";
 
 export const books = async (req: Request, res: Response) => {

@@ -1,4 +1,4 @@
-import User from "../shared/db-models/order-models"
+import User from "../../db/models/OrderModels"
 
 export const createOrder = async (order: any) => {
 

@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import Order from "../shared/db-models/order-models"
+import Order from "../../db/models/OrderModels"
 import { create } from "./order-service";
 
 export const newOrder = async (req: Request, res: Response) => {
