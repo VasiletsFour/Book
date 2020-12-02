@@ -13,7 +13,7 @@ export const authors = async (page: number, name?: string) => {
             remove_author: false
         };
 
-        const result = await AuthorModel.find(filter).skip(start).limit(limit);
+        const result = await AuthorModel.find(filter).sort({ name: 1 }).skip(start).limit(limit);
 
         return {
             status: 200,

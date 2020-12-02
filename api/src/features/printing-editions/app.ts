@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { books,sortBook, addBook, appBook, delBook } from "./book"
-import admin from "../../middleware/role";
+import admin from "../../middleware/adminMiddleware";
 
 const router: Router = Router()
 

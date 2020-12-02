@@ -6,7 +6,7 @@ import authRoutes from "./features/auth/routes";
 import {config} from "./config/config";
 import connectDb from "./db/db/db";
 import authorRoutes from './features/author/routes';
-import orderRoutes from "./features/orders/app";
+import orderRoutes from "./features/orders/routes";
 import bookRoutes from "./features/printing-editions/app";
 import userRoutes from "./features/user/app";
 
@@ -33,7 +33,7 @@ const createServer = () => {
         app.use('/api/auth', authRoutes);
         app.use('/api/author', authorRoutes)
         // app.use('/books', bookRoutes)
-        // app.use('/order', orderRoutes)
+        app.use('/order', orderRoutes)
         // app.use('/admin', userRoutes)
 
         app.listen(port, () => console.log(`Server run on port ${port}`));

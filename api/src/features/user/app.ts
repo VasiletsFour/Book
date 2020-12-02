@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { user, userFind} from "./user-controller"
-import admin from "../../middleware/role";
+import admin from "../../middleware/adminMiddleware";
 
 const router: Router = Router()
 
