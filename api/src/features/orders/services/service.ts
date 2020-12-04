@@ -7,7 +7,7 @@ import OrderSchema from "../Schema/OrderSchema.json";
 export const create = async (order: CreateOrder, auth:string) => {
     logger.info(`>>>> orderService.create order = ${order.transaction_id}`);
     const validate = isValidated(order, OrderSchema);
-
+    
     if (!validate.valid) {
         logger.error(`create Order, error: ${validate.errors}`);
         return { status: 400, message: { error: validate.errors } };
@@ -18,7 +18,7 @@ export const create = async (order: CreateOrder, auth:string) => {
 
 export const orders = async (page:number,id?:string) => {
     logger.info(`>>>> orderService.Orders: qury = ${id} ${page}`);
-
-    return await rpositore.orders(page, name);
+    
+    return await rpositore.orders(page, id);
 };
 

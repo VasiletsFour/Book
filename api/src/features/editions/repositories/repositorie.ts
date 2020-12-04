@@ -14,14 +14,14 @@ export const books = async (
     currency?: string
 ) => {
     try {
-        // let authors = null;
+        let authors = null;
         const { start, limit } = pagination(10, Number(page));
 
-        // if (authorName) {
-        //     authors = await AuthorModels.find({ name: authorName }).map((item: any) => {
-        //         return { _id: item._id };
-        //     });
-        // }
+        if (authorName) {
+            authors = await AuthorModels.find({ name: authorName }).map((item: any) => {
+                return { _id: item._id };
+            });
+        }
 
         const sort = { $sort: price?{price}:date?{date}:{name:1} } 
         
@@ -41,8 +41,6 @@ export const books = async (
         const lookUp = {
             $lookup: {
                 from: "authors",
-                // localField: "_id",
-                // foreignField: "author_id",
                 let: { author_id: "$author_id", id: "$_id" },
                 pipeline: [
                     { $match: { $expr: { $in: ["$_id","$$author_id"]}, remove_author: false  } },

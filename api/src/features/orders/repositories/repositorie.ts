@@ -1,19 +1,24 @@
 import mongoose from "mongoose";
 import OrderModel from "../../../db/models/OrderModels";
 import { pagination } from "../../../helpers/pagination/pagination";
-import { tokenDecode } from "../../../helpers/token/token";
 import { timeStempCreate } from "../../../helpers/timeStemp/timeStemp";
+import { tokenDecode } from "../../../helpers/token/token";
 import { CreateOrder } from "../api";
 
 export const create = async (order: CreateOrder, auth: string) => {
     try {
         const token = await tokenDecode(auth);
-        const userId = token.id;
+        const user_id = token.id;
         const date = timeStempCreate();
+        const createOrder = new OrderModel({
+            user_id,
+            date,
+            items: { printing_editions_id: order.printing_editions_id, count: order.count },
+            transaction_id: order.transaction_id
+        });
 
-        const createOrder = new OrderModel({ date, userId, ...order });
         await OrderModel.create(createOrder);
-
+        
         return {
             status: 200,
             message: {
@@ -28,13 +33,13 @@ export const create = async (order: CreateOrder, auth: string) => {
 export const orders = async (page: number, id?: string) => {
     try {
         const { start, limit } = pagination(10, Number(page));
-        const sort = { sort: { date: -1 } };
-
-        const match = id?{
+        const sort = { $sort: { date: -1 } };
+        
+        const match = {
             $match: {
                 userId: mongoose.Types.ObjectId(id)
             }
-        }:{};
+        };
 
         const lookUp = {
             $lookup: {
@@ -63,13 +68,13 @@ export const orders = async (page: number, id?: string) => {
 
         const result = await OrderModel.aggregate([
             match,
-            lookUp,
+            // lookUp,
             sort,
-            project,
+            // project,
             { $skip: start },
             { $limit: limit }
         ]);
-
+        console.log(result)
         return {
             status: 200,
             message: {

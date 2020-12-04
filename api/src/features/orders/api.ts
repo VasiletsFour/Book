@@ -1,5 +1,5 @@
 export interface Order {
-    date: number;
+    date?: number;
     user_id: string;
     items: Item;
     payment_info: PaymentInfo;
