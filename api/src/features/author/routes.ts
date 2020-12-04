@@ -1,12 +1,14 @@
-import { Router} from "express"
-import * as controller from "./controllers/controller"
+import { Router } from "express";
+import { adminMiddleware } from "../../middleware/adminMiddleware";
+import { authMiddleware } from "../../middleware/authMiddleware";
+import * as controller from "./controllers/controller";
 
-const router: Router = Router()
+const router: Router = Router();
 
-router.get('/', controller.authors)
+router.get("/", authMiddleware, controller.authors);
 //admin
-router.post('/',  controller.create)
-router.put('/:id', controller.update)
-router.delete('/:id', controller.del)
+router.post("/", authMiddleware, adminMiddleware, controller.create);
+router.put("/:id", authMiddleware, adminMiddleware, controller.update);
+router.delete("/:id", authMiddleware, adminMiddleware, controller.del);
 
-export default router
+export default router;

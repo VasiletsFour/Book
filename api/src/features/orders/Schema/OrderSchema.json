@@ -1,0 +1,20 @@
+{
+    "title": "Order",
+    "properties": {
+        "printing_editions_id": {
+            "type": "string"
+        },
+        "count": {
+            "type": "number"
+        },
+        "transaction_id": {
+            "type": "string"
+        }
+    },
+    "additionalProperties": false,
+    "requierd": [
+        "printing_editions_id",
+        "count",
+        "transaction_id"
+    ]
+}

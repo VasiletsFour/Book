@@ -1,17 +1,16 @@
-import { Router, Request, Response, NextFunction } from "express"
+import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import * as conf from "../config/config";
-import { token } from "morgan";
+import { config } from "../config/config";
+import UserModel from "../db/models/UserModels";
+import { Token } from "../helpers/token/api";
 
-const key:string = String(conf.arr[1])
-
-export const admin = async function (req:Request, res:Response, next:NextFunction) {
-    const auth = req.header("Authorization").replace(/Bearer /, "");
+export const adminMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+    const header:any = await req.header("Authorization")
+    const auth = header.replace(/Bearer /, "");
     
-
-    jwt.verify(auth, process.env.SECRET_KEY, async (err, decode: Verify) => {
+    jwt.verify(auth, config.jwtKey, async (err:Error, decode: Token) => {
         if (decode) {
-            const user = await UserModel.findOne({ _id: decode["_id"] });
+            const user = await UserModel.findOne({ _id: decode["id"] });
 
             if (user === null || user?.role !== "admin") {
                 return res.status(401).send({ err: "Account not verify" });
@@ -28,4 +27,4 @@ export const admin = async function (req:Request, res:Response, next:NextFunctio
 
         return res.status(401).send({ err: "please login again" });
     });
-}
+};

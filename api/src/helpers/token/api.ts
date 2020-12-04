@@ -1,5 +1,5 @@
 export interface Token {
-    id: string;
+    id?: string;
     role?: string;
-    type: "access" | "refresh";
+    type?: "access" | "refresh";
 }

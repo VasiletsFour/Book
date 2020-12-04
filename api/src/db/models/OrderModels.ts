@@ -10,18 +10,16 @@ const OrderSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true
     },
-    items: [
-        {
-            printing_editions_id: {
-                type: Schema.Types.ObjectId,
-                required: true
-            },
-            count: {
-                type: Number,
-                required: true
-            }
+    items: {
+        printing_editions_id: {
+            type: Schema.Types.ObjectId,
+            required: true
+        },
+        count: {
+            type: Number,
+            required: true
         }
-    ],
+    },
     payment_info: {
         transaction_id: String
     }
