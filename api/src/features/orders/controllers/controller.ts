@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import * as service from "../services/service";
 
 export const create = (req: Request, res: Response) => {
-    const auth = req.header("Authorization");
+    const auth:any = req.header("Authorization");
 
     service
         .create(req.body, auth)

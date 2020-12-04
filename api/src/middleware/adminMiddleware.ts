@@ -2,13 +2,13 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { config } from "../config/config";
 import UserModel from "../db/models/UserModels";
-import { Token } from "../helpers/token/api";
+import { Verify } from "../helpers/token/api";
 
 export const adminMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const header:any = await req.header("Authorization")
     const auth = header.replace(/Bearer /, "");
     
-    jwt.verify(auth, config.jwtKey, async (err:Error, decode: Token) => {
+    jwt.verify(auth, config.jwtKey, async (err:Error, decode: Verify) => {
         if (decode) {
             const user = await UserModel.findOne({ _id: decode["id"] });
 

@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { config } from "../config/config";
 import UserModel from "../db/models/UserModels";
-import { Token } from "../helpers/token/api";
+import { Verify } from "../helpers/token/api";
 import { generateAccessToken, generateRefreshToken } from "../helpers/token/token";
 
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
@@ -11,7 +11,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
     const auth = authHeader.replace(/Bearer /, "");
     const ref = refHeader.replace(/Bearer /, "");
 
-    jwt.verify(auth, config.jwtKey, async (err:Error, decode: Token) => {
+    jwt.verify(auth, config.jwtKey, async (err:Error, decode: Verify) => {
         if (decode) {
             const user = await UserModel.findOne({ _id: decode["id"] });
 
@@ -20,7 +20,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
             }
         }
 
-        jwt.verify(ref, config.jwtKey, async (err:Error, decode: Token) => {
+        jwt.verify(ref, config.jwtKey, async (err:Error, decode: Verify) => {
             if (decode) {
                 const user = await UserModel.findOne({ _id: decode["id"] });
 

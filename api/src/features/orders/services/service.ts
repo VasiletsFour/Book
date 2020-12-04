@@ -4,7 +4,7 @@ import { CreateOrder } from "../api";
 import * as rpositore from "../repositories/repositorie";
 import OrderSchema from "../Schema/OrderSchema.json";
 
-export const create = async (order: CreateOrder, auth?:string) => {
+export const create = async (order: CreateOrder, auth:string) => {
     logger.info(`>>>> orderService.create order = ${order.transaction_id}`);
     const validate = isValidated(order, OrderSchema);
 

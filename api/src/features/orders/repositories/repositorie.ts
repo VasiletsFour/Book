@@ -1,13 +1,19 @@
+import mongoose from "mongoose";
 import OrderModel from "../../../db/models/OrderModels";
 import { pagination } from "../../../helpers/pagination/pagination";
+import { tokenDecode } from "../../../helpers/token/token";
+import { timeStempCreate } from "../../../helpers/timeStemp/timeStemp";
 import { CreateOrder } from "../api";
-import mongoose from "mongoose";
 
-export const create = async (order: CreateOrder, auth?:string) => {
+export const create = async (order: CreateOrder, auth: string) => {
     try {
-        
+        const token = await tokenDecode(auth);
+        const userId = token.id;
+        const date = timeStempCreate();
 
-        
+        const createOrder = new OrderModel({ date, userId, ...order });
+        await OrderModel.create(createOrder);
+
         return {
             status: 200,
             message: {
@@ -19,41 +25,46 @@ export const create = async (order: CreateOrder, auth?:string) => {
     }
 };
 
-export const orders = async (page: number, id?:string) => {
+export const orders = async (page: number, id?: string) => {
     try {
         const { start, limit } = pagination(10, Number(page));
-         await OrderModel.find(id && {userId:id}).sort({ date: -1 }).skip(start).limit(limit);
-        const match = {$match:{
-            userId:mongoose.Types.ObjectId(id)
-        }}
-        
+        await OrderModel.find(id && { userId: id })
+            .sort({ date: -1 })
+            .skip(start)
+            .limit(limit);
+        const match = {
+            $match: {
+                userId: mongoose.Types.ObjectId(id)
+            }
+        };
+
         const lookUp = {
-            $lookup:{
-                from: "users",    
-                let: { userId: "$userId", id: "$_id"},       
+            $lookup: {
+                from: "users",
+                let: { userId: "$userId", id: "$_id" },
                 pipeline: [
-                    { $match:
-                        { $expr:{ $eq: [ "$_id",  "$$userId" ] }}
-                    },
-                    { $project: {  _id: false, id:"$_id",  username:"$username", email:"$email" } }
-                 ],
+                    { $match: { $expr: { $eq: ["$_id", "$$userId"] } } },
+                    { $project: { _id: false, id: "$_id", username: "$username", email: "$email" } }
+                ],
                 as: "user"
             }
-        }
+        };
 
-        const project = {$project:{
-            _id:false,
-            id:"$_id",
-            payment_info: "$payment_info.transaction_id",
-            user:{
-                id: { $arrayElemAt: [ "$user.id", 0 ] },
-                username: { $arrayElemAt: [ "$user.username", 0 ] }, 
-                email:{ $arrayElemAt: [ "$user.email", 0 ] }
+        const project = {
+            $project: {
+                _id: false,
+                id: "$_id",
+                payment_info: "$payment_info.transaction_id",
+                user: {
+                    id: { $arrayElemAt: ["$user.id", 0] },
+                    username: { $arrayElemAt: ["$user.username", 0] },
+                    email: { $arrayElemAt: ["$user.email", 0] }
+                }
             }
-        }}
+        };
 
-        const result = await OrderModel.aggregate([id&&match,lookUp, project])
-        
+        const result = await OrderModel.aggregate([id && match, lookUp, project]);
+
         return {
             status: 200,
             message: {
