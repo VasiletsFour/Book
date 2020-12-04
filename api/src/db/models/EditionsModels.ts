@@ -1,5 +1,5 @@
 import { Document, model, Schema } from "mongoose";
-import { Edition } from "../../features/printing-editions/api";
+import { Edition } from "../../features/editions/api";
 
 const EditionSchema = new Schema({
     name: {
@@ -25,8 +25,14 @@ const EditionSchema = new Schema({
         type: String,
         required: true
     },
-    author_id: {
-        type: Schema.Types.ObjectId,
+    author_id: [
+        {
+            type: Schema.Types.ObjectId,
+            required: true
+        }
+    ],
+    date: {
+        type: Number,
         required: true
     },
     remove_book: {

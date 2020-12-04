@@ -1,5 +1,5 @@
 {
-    "title": "BookRequest",
+    "title": "Book",
     "properties": {
         "name": {
             "type": "string",
@@ -14,12 +14,11 @@
         "type": {
             "type": "string",
             "minLenght": 7,
-            "maxLenght": 30
+            "maxLenght": 30,
+            "enum":["book", "news"]
         },
         "price":{
-            "type":"string",
-            "min-lenght":2,
-            "max-lenght":10
+            "type":"number"
         },
         "currency":{
             "type":"string",
@@ -27,18 +26,9 @@
             "max-lenght":5
         },
          "author_id":{
-            "type":"string",
-            "min-lenght":5,
-            "max-lenght":50
+            "type":"array"
         }
     },
     "additionalProperties": false,
-    "requierd": [
-        "name",
-        "description",
-        "type",
-        "price",
-        "currency",
-        "author_id"
-    ]
+    "requierd": []
 }

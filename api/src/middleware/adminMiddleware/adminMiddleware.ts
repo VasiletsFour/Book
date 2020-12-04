@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { config } from "../config/config";
-import UserModel from "../db/models/UserModels";
-import { Verify } from "../helpers/token/api";
+import { config } from "../../config/config";
+import UserModel from "../../db/models/UserModels";
+import { Verify } from "../../helpers/token/api";
 
 export const adminMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const header:any = await req.header("Authorization")

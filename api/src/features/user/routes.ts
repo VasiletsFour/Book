@@ -5,10 +5,6 @@ import * as controller from "./controllers/controller";
 
 const router: Router = Router();
 
-router.get("/", controller.authors);
-//admin
-router.post("/admin", authMiddleware, adminMiddleware, controller.create);
-router.put("/admin/:id", authMiddleware, adminMiddleware, controller.update);
-router.delete("/admin/:id", authMiddleware, adminMiddleware, controller.del);
+router.get("/admin", authMiddleware, adminMiddleware, controller.users);
 
 export default router;

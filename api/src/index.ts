@@ -1,20 +1,20 @@
-import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import express from "express";
 import morgan from "morgan";
-import authRoutes from "./features/auth/routes";
-import {config} from "./config/config";
+import { config } from "./config/config";
 import connectDb from "./db/db/db";
+import authRoutes from "./features/auth/routes";
 import authorRoutes from './features/author/routes';
+import bookRoutes from "./features/editions/routes";
 import orderRoutes from "./features/orders/routes";
-import bookRoutes from "./features/printing-editions/app";
-import userRoutes from "./features/user/app";
+import userRoutes from "./features/user/routes";
 
 const createServer = () => {
     try {
         const app = express();
         const port = config.port;
-
+        
         connectDb();
         
         app.use(cors());
@@ -32,9 +32,9 @@ const createServer = () => {
 
         app.use('/api/auth', authRoutes);
         app.use('/api/author', authorRoutes)
-        // app.use('/books', bookRoutes)
-        app.use('/order', orderRoutes)
-        // app.use('/admin', userRoutes)
+        app.use('/api/book', bookRoutes)
+        app.use('/api/order', orderRoutes)
+        app.use('/api/user', userRoutes)
 
         app.listen(port, () => console.log(`Server run on port ${port}`));
     } catch (error) {

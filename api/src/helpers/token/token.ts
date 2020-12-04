@@ -9,7 +9,7 @@ export const generateAccessToken = (userRole: string, userId: string) => {
         type: "access"
     };
 
-    const options = { expiresIn: "6m" };
+    const options = { expiresIn: "66m" };
 
     return jwt.sign(payload, config.jwtKey, options);
 };

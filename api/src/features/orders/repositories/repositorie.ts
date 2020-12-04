@@ -28,15 +28,13 @@ export const create = async (order: CreateOrder, auth: string) => {
 export const orders = async (page: number, id?: string) => {
     try {
         const { start, limit } = pagination(10, Number(page));
-        await OrderModel.find(id && { userId: id })
-            .sort({ date: -1 })
-            .skip(start)
-            .limit(limit);
-        const match = {
+        const sort = { sort: { date: -1 } };
+
+        const match = id?{
             $match: {
                 userId: mongoose.Types.ObjectId(id)
             }
-        };
+        }:{};
 
         const lookUp = {
             $lookup: {
@@ -63,7 +61,14 @@ export const orders = async (page: number, id?: string) => {
             }
         };
 
-        const result = await OrderModel.aggregate([id && match, lookUp, project]);
+        const result = await OrderModel.aggregate([
+            match,
+            lookUp,
+            sort,
+            project,
+            { $skip: start },
+            { $limit: limit }
+        ]);
 
         return {
             status: 200,

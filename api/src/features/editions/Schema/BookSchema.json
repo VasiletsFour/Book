@@ -1,0 +1,42 @@
+{
+    "title": "Book",
+    "properties": {
+        "name": {
+            "type": "string",
+            "minLenght": 5,
+            "maxLenght": 250
+        },
+        "description": {
+            "type": "string",
+            "min-lenght": 8,
+            "max-lenght": 500
+        },
+        "type": {
+            "type": "string",
+            "maxLenght": 30,
+            "enum":["book", "news"]
+        },
+        "price":{
+            "type":"number",
+            "min-lenght":2,
+            "max-lenght":10
+        },
+        "currency":{
+            "type":"string",
+            "min-lenght":2,
+            "max-lenght":5
+        },
+         "author_id":{
+            "type":"array"
+        }
+    },
+    "additionalProperties": false,
+    "requierd": [
+        "name",
+        "description",
+        "type",
+        "price",
+        "currency",
+        "author_id"
+    ]
+}

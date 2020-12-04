@@ -11,7 +11,7 @@ export const authors = async (page: number, name?: string) => {
 };
 
 export const create = async (author: Author) => {
-    logger.info(`>>>> authorService.create author = ${author}`);
+    logger.info(`>>>> authorService.create author = ${author.name}`);
     const validate = isValidated(author, AuthorSchema);
 
     if (!validate.valid) {
