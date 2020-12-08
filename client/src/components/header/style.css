@@ -18,7 +18,7 @@
     height: 96px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 .header div a {
@@ -46,6 +46,9 @@
     text-decoration-line: underline;
     text-transform: capitalize;
     font-size: 21px;
+}
+.shoppingConteiner{
+    margin-bottom: 14px;
 }
 .count{
     width: 20px;
