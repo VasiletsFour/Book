@@ -6,31 +6,29 @@ import "./style.css";
 
 export const Header = () => {
   const [openLogin, setOpenLogin] = useState(false);
-  console.log(getToken());
+
   return (
-    <header>
+    <header className="header">
       {openLogin && <Signin closePopup={() => setOpenLogin(false)} />}
-      <div className="header">
-        <div className="logotype">
-          <img src="/img/logo.png" alt="logo" />
-        </div>
-        <div className="for-user">
-          {!getToken() ? (
-            <button onClick={() => setOpenLogin(true)}>
-              <a>Login</a>
-            </button>
-          ) : (
-            <button onClick={() => alert("logout")}>
-              <img src="/img/user.png" alt="user" />
-            </button>
-          )}
-          <Link to="/shoping">
-            <div className="shoppingConteiner">
-              <div className="count">0</div>
-              <img src="/img/shoppingCart.png" alt="shooping" />
-            </div>
-          </Link>
-        </div>
+      <div className="logotype">
+        <img src="/img/logo.png" alt="logo" />
+      </div>
+      <div className="for-user">
+        {!getToken() ? (
+          <button onClick={() => setOpenLogin(true)}>
+            <a>Login</a>
+          </button>
+        ) : (
+          <button onClick={() => alert("logout")}>
+            <img src="/img/user.png" alt="user" />
+          </button>
+        )}
+        <Link to="/shoping">
+          <div className="shoppingConteiner">
+            <div className="count">0</div>
+            <img src="/img/shoppingCart.png" alt="shooping" />
+          </div>
+        </Link>
       </div>
     </header>
   );

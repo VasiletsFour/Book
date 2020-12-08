@@ -1,13 +1,58 @@
-import React, { Component } from "react";
-import "./style.css";
-import Order from "../order/order";
+import React, { useEffect, useState } from "react";
+import { BookApi, getBook, BookAuthor } from "../../requests/book";
 import Baner from "../search-input/search-bar";
 import Bar from "../side-bar/side-bar";
+import "./style.css";
 
-import { connect } from "react-redux";
-import { book } from "../../redux/actions";
+export const Book = () => {
+  const [stop, setStop] = useState(false);
+  const [books, setBook] = useState<any>(undefined);
 
-// const Book
+  useEffect(() => {
+    setStop(true);
+    getBook((data: Array<BookApi>) => setBook(data));
+  }, [stop]);
+
+  return (
+    <div>
+      <Baner
+        url={"http://localhost:8800/books/sort"}
+        page={"Book Catalog"}
+        dataFoo={(data: any) => setBook(data)}
+      />
+      <div className="wraperr">
+        <div>
+          <Bar />
+          <div className="book-conteiner">
+            {books?.map((item: BookApi) => (
+              <a key={item.id} className="cart">
+                <div className="img-conteiner">{/* <img src={} /> */}</div>
+                <p className="name" id="bookName">
+                  {item?.name}
+                </p>
+                {item.author.map((i: BookAuthor) => (
+                  <p>{i.name}</p>
+                ))}
+                <p className="price" id="bookPrice">
+                  {item.price}
+                  <span>Грн</span>
+                </p>
+              </a>
+              // <p key={item.id}>{item.price}</p>
+            ))}
+          </div>
+
+          {/* {listBook.length <= 6 ?
+                                            < div onClick={this.pagination}>
+                                                {listButton}
+                                            </div> : null} */}
+        </div>
+        {/* {this.state.showOrder ?
+                                    <Order closeOrder={this.toggleOrder.bind(this)} book={this.state.bookOrder} /> : null} */}
+      </div>
+    </div>
+  );
+};
 
 // class Book extends Component<any, { token: any, err: any, isLoaded: any, bookOrder: any, showOrder: boolean, pageCount: any, dispatch: any }>{
 //     constructor(props: any) {

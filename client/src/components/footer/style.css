@@ -1,12 +1,21 @@
 footer{
-    position: absolute;
-	left: 0;
-	bottom: 0;
     background: #333333;
     width: 100%;
     height: 46px;
+    padding: 14px 14px;
 }
 
-footer p{
-    color: red;
+footer ul{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+}
+
+footer li{
+    font-size: 12px;
+    font-family: Poppins;
+    list-style-type:none ;
+    color: white;
 }

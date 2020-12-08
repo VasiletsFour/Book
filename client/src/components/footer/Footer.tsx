@@ -3,6 +3,11 @@ import "./style.css";
 
 export const Footer = () => (
   <footer>
-    <p>footer</p>
+    <ul>
+      <li>Home</li>
+      <li>Concact</li>
+      <li>About as</li>
+      <li>Privacy</li>
+    </ul>
   </footer>
 );
