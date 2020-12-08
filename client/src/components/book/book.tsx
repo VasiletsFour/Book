@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { BookApi, getBook, BookAuthor } from "../../requests/book";
 import Baner from "../search-input/search-bar";
 import Bar from "../side-bar/side-bar";
@@ -7,10 +8,11 @@ import "./style.css";
 export const Book = () => {
   const [stop, setStop] = useState(false);
   const [books, setBook] = useState<any>(undefined);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setStop(true);
-    getBook((data: Array<BookApi>) => setBook(data));
+    getBook((data: Array<BookApi>) => dispatch({ type: "BOOKS", data: data }));
   }, [stop]);
 
   return (
