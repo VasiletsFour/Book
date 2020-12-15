@@ -12,7 +12,9 @@ export interface Edition {
 export interface Query {
     page: number;
     authorName?: string;
-    name?: string;
+    word?: string;
+    min?:number,
+    max?:number
     date?: "asc" | "desc" | number;
     price?: "asc" | "desc" | number;
     type: "book" | "news";

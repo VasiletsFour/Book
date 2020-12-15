@@ -1,3 +1,4 @@
+import { MinKey } from "mongodb";
 import AuthorModels from "../../../db/models/AuthorModels";
 import EditionsModels from "../../../db/models/EditionsModels";
 import { pagination } from "../../../helpers/pagination/pagination";
@@ -6,10 +7,12 @@ import { Edition } from "../api";
 
 export const books = async (
     page: number,
-    name?: string,
+    word?: string,
     authorName?: string,
     date?: number,
-    price?: number,
+    min?:number,
+    max?:number,
+    price?:number,
     type?: string,
     currency?: string
 ) => {
@@ -27,10 +30,11 @@ export const books = async (
         
         const match = {
             $match: {
-                // name: name && {
-                //           $regex: name,
-                //           $options: "i"
-                // },
+                name: {
+                          $regex: word,
+                          $options: "i"
+                },
+                price:{$gte: min, $lte:max},
                 // type:type,
                 // currency:currency,
                 // author_id: { $in: authors },

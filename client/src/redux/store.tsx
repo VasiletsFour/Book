@@ -1,6 +1,13 @@
-const initialState = {
-  books: [],
-  role: "",
+import { BookApi } from "../requests/book/api";
+
+export interface InitialState {
+  books: null | Array<BookApi>;
+  role: "admin" | "user" | null;
+}
+
+const initialState: InitialState = {
+  books: null,
+  role: null,
 };
 
 export default function reducer(state: any = initialState, action: any) {
