@@ -146,7 +146,7 @@ class Signin extends Component<
                   ) : null}
                   <button onClick={this.login}>Signin</button>
                 </form>
-                <a onClick={this.toggleSignup.bind(this)}>Signup</a>
+                <p onClick={this.toggleSignup.bind(this)}>Signup</p>
               </div>
             </div>
           ) : null}

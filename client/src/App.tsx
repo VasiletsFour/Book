@@ -1,24 +1,11 @@
-import jwt from "jsonwebtoken";
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { BookPage } from "../src/page";
 import {
   BrowserRouter as Router,
   Redirect,
   Route,
   Switch,
 } from "react-router-dom";
-import { role } from "../src/redux/actions";
-import AdminBook from "../src/components/admin/admin-book/admin-book";
-import CreateBook from "../src/components/admin/admin-book/create-book";
-import Author from "../src/components/admin/authors/admin-author";
-import CreateAuthor from "../src/components/admin/authors/create-author";
-import AdminOrder from "../src/components/admin/orders/admin-orders";
-import User from "../src/components/admin/users/admin-users";
-// import Book from "../src/components/book/book";
-import Header from "../src/components/header/header";
-import Order from "../src/components/order/order";
-import Shoping from "../src/components/printing-shoping/shoping";
+import { BookPage } from "../src/page";
 import "./style.css";
 
 class App extends Component {

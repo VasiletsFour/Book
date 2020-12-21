@@ -16,7 +16,7 @@ export const Header = () => {
       <div className="for-user">
         {!getToken() ? (
           <button onClick={() => setOpenLogin(true)}>
-            <a>Login</a>
+            <p>Login</p>
           </button>
         ) : (
           <button onClick={() => alert("logout")}>
