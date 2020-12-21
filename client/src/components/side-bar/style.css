@@ -1,5 +1,5 @@
 .bar{
-    padding: 0 42px;
+    padding: 20px 42px 40px 42px;
     position: relative;
     margin-top: 15px;
     background: #F8F8F8;
@@ -10,18 +10,33 @@
     align-items: flex-start;
     border-radius: 2px;
 }
-.radio-input{
-    width: 260px;
-    height: 230px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.radio-input h3{
+  padding-bottom: 20px;
 }
 .radio-conteiner{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    margin-top: 6px;
 }
+.price-wrapper{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.price-input_wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.price-input_wrapper input{
+  width: 126px;
+  border-radius: 2px;
+  margin-right: 10px;
+}
+
 .radio-conteiner input{
     width: 10px;
     height: 10px;

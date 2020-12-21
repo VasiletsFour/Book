@@ -10,7 +10,7 @@ export const Bar = () => {
 
   return (
     <div className="bar">
-      <div className="radi-input">
+      <div className="radio-input">
         <h3>CATEGORY</h3>
         <div className="radio-conteiner">
           <input type="radio" name="cind" value="book" />
@@ -25,8 +25,9 @@ export const Bar = () => {
           <p>Magazine</p>
         </div>
       </div>
-      <div>
-        <div>
+      <div className="price-wrapper">
+        <h3>PRICE, $</h3>
+        <div className="price-input_wrapper">
           <input
             type="number"
             value={min}
@@ -48,8 +49,19 @@ export const Bar = () => {
               setMax(Number(event.target.value))
             }
           />
+          <p>$</p>
+          <button
+            onClick={() =>
+              getBook(
+                (data: Array<BookApi>) =>
+                  dispatch({ type: "BOOKS", data: data }),
+                `?min=${min}&max=${max}`
+              )
+            }
+          >
+            ok
+          </button>
         </div>
-        <h3>PRICE</h3>
         <section className="range-slider">
           <input
             value={min}
@@ -75,16 +87,6 @@ export const Bar = () => {
           />
         </section>
       </div>
-      <button
-        onClick={() =>
-          getBook(
-            (data: Array<BookApi>) => dispatch({ type: "BOOKS", data: data }),
-            `?min=${min}&max=${max}`
-          )
-        }
-      >
-        ok
-      </button>
     </div>
   );
 };

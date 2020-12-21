@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { InitialState } from "../../redux/store";
 import { BookApi, BookAuthor, getBook } from "../../requests/book";
 import Baner from "../search-input/search-bar";
-import { Bar } from "../side-bar/side-bar";
+import { Bar } from "../side-bar/SideBar";
 import { Book } from "../book/Book";
 import "./style.css";
 
