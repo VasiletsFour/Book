@@ -1,11 +1,13 @@
 .auth-conteiner{
+    padding: 0;
     position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
 }
 .opacity{
     opacity: 0.3;

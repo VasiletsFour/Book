@@ -107,53 +107,51 @@ class Signin extends Component<
 
   render() {
     return (
-      <div>
-        <div className="auth-conteiner">
-          <div className="opacity"></div>
-          {this.state.showSignup ? (
-            <div className="auth">
-              <button onClick={this.props.closePopup}>X</button>
-              <div className="create-user">
-                <h1>Sign in</h1>
-                <form>
-                  <p>Email</p>
-                  <input
-                    type="text"
-                    style={{ borderColor: this.state.emailError }}
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleChange}
-                    placeholder="Your email"
-                  />
-                  {this.state.emailError ? (
-                    <span style={{ borderColor: this.state.emailError }}>
-                      Не верный емейл
-                    </span>
-                  ) : null}
-                  <p>Password</p>
-                  <input
-                    type="password"
-                    style={{ borderColor: this.state.passError }}
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    placeholder="Your password"
-                  />
-                  {this.state.passError ? (
-                    <span style={{ borderColor: this.state.passError }}>
-                      Не верный пароль
-                    </span>
-                  ) : null}
-                  <button onClick={this.login}>Signin</button>
-                </form>
-                <p onClick={this.toggleSignup.bind(this)}>Signup</p>
-              </div>
+      <div className="auth-conteiner">
+        <div className="opacity"></div>
+        {this.state.showSignup ? (
+          <div className="auth">
+            <button onClick={this.props.closePopup}>X</button>
+            <div className="create-user">
+              <h1>Sign in</h1>
+              <form>
+                <p>Email</p>
+                <input
+                  type="text"
+                  style={{ borderColor: this.state.emailError }}
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  placeholder="Your email"
+                />
+                {this.state.emailError && (
+                  <span style={{ borderColor: this.state.emailError }}>
+                    Не верный емейл
+                  </span>
+                )}
+                <p>Password</p>
+                <input
+                  type="password"
+                  style={{ borderColor: this.state.passError }}
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  placeholder="Your password"
+                />
+                {this.state.passError && (
+                  <span style={{ borderColor: this.state.passError }}>
+                    Не верный пароль
+                  </span>
+                )}
+                <button onClick={this.login}>Signin</button>
+              </form>
+              <p onClick={this.toggleSignup.bind(this)}>Signup</p>
             </div>
-          ) : null}
-        </div>
-        {!this.state.showSignup ? (
-          <Signup closeSignUp={this.toggleSignup.bind(this)} />
+          </div>
         ) : null}
+        {!this.state.showSignup && (
+          <Signup closeSignUp={this.toggleSignup.bind(this)} />
+        )}
       </div>
     );
   }
