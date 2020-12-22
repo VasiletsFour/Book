@@ -5,7 +5,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import { BookPage } from "../src/page";
+import { BookPage, BooksPage } from "../src/page";
 import "./style.css";
 
 class App extends Component {
@@ -60,8 +60,9 @@ class App extends Component {
       <div>
         <Router>
           <Switch>
-            <Route path="/book" component={BookPage} />
-            {window.location.pathname === "/" && <Redirect to="/book" />};
+            <Route path="/books" component={BooksPage} />
+            <Route path="/book/:id" component={BookPage} />
+            {window.location.pathname === "/" && <Redirect to="/books" />};
             {/* <PrivateRoute path="/adminBook" component={AdminBook} />
             <PrivateRoute path="/adminAuthor" component={Author} />
             <PrivateRoute path="/adminUser" component={User} />

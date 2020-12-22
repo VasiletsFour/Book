@@ -8,10 +8,10 @@ import UpdateSchema from "../Schema/UpdateSchema.json";
 export const books = async ({ page, word, authorName, date, min, max, price, type, currency }: Query) => {
     logger.info(`>>>> bookService.books`);
 
-    !word && (word = "")
-    !min && (min = 0)
-    !max && (max=10000)
-    
+    !word && (word = "");
+    !min && (min = 0);
+    !max && (max = 10000);
+
     switch (date) {
         case "asc":
             date = 1;
@@ -30,6 +30,16 @@ export const books = async ({ page, word, authorName, date, min, max, price, typ
     }
 
     return await repositore.books(page, word, authorName, date, Number(min), Number(max), price, type, currency);
+};
+
+export const book = async (id: string) => {
+    logger.info(`>>>> bookService.find book = ${id}`);
+    if (!id) {
+        logger.error("find Book, error: not found id");
+        return { status: 400, message: { error: "Not found id " } };
+    }
+
+    return await repositore.book(id);
 };
 
 export const create = async (book: Edition) => {

@@ -1,9 +1,9 @@
 import React from "react";
-import { Book } from "../../components";
+import { Books } from "../../components";
 import { MainLayout } from "../../layout";
 
-export const BookPage = () => (
+export const BooksPage = () => (
   <MainLayout>
-    <Book />
+    <Books />
   </MainLayout>
 );

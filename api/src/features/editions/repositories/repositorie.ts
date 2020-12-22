@@ -1,18 +1,19 @@
-import { MinKey } from "mongodb";
+import mongoose from "mongoose";
 import AuthorModels from "../../../db/models/AuthorModels";
 import EditionsModels from "../../../db/models/EditionsModels";
 import { pagination } from "../../../helpers/pagination/pagination";
 import { timeStempCreate } from "../../../helpers/timeStemp/timeStemp";
 import { Edition } from "../api";
+import { lookUp, project } from "../pipeline";
 
 export const books = async (
     page: number,
     word?: string,
     authorName?: string,
     date?: number,
-    min?:number,
-    max?:number,
-    price?:number,
+    min?: number,
+    max?: number,
+    price?: number,
     type?: string,
     currency?: string
 ) => {
@@ -26,15 +27,15 @@ export const books = async (
             });
         }
 
-        const sort = { $sort: price?{price}:date?{date}:{name:1} } 
-        
+        const sort = { $sort: price ? { price } : date ? { date } : { name: 1 } };
+
         const match = {
             $match: {
                 name: {
-                          $regex: word,
-                          $options: "i"
+                    $regex: word,
+                    $options: "i"
                 },
-                price:{$gte: min, $lte:max},
+                price: { $gte: min, $lte: max },
                 // type:type,
                 // currency:currency,
                 // author_id: { $in: authors },
@@ -42,30 +43,6 @@ export const books = async (
             }
         };
 
-        const lookUp = {
-            $lookup: {
-                from: "authors",
-                let: { author_id: "$author_id", id: "$_id" },
-                pipeline: [
-                    { $match: { $expr: { $in: ["$_id","$$author_id"]}, remove_author: false  } },
-                    { $project: { _id: false, id: "$_id", name: "$name" } }
-                ],
-                as: "author"
-            }
-        };
-
-        const project = {
-            $project: {
-                _id: false,
-                id: "$_id",
-                name: "$name",
-                description: "$description",
-                type: "$type",
-                price: "$price",
-                currency: "$currency",
-                author: "$author"
-            }
-        };
         const result = await EditionsModels.aggregate([
             match,
             lookUp,
@@ -74,11 +51,33 @@ export const books = async (
             { $skip: start },
             { $limit: limit }
         ]);
-        
+
         return {
             status: 200,
             message: {
                 data: result
+            }
+        };
+    } catch (err) {
+        return { status: 400, message: { error: err } };
+    }
+};
+
+export const book = async (id: string) => {
+    try {
+        const match = {
+            $match: {
+                _id: mongoose.Types.ObjectId(id),
+                remove_book: false
+            }
+        };
+
+        const result = await EditionsModels.aggregate([match, lookUp, project, { $limit: 1 }]);
+
+        return {
+            status: 200,
+            message: {
+                data: result[0]
             }
         };
     } catch (err) {

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { InitialState } from "../../redux/store";
-import { BookApi, getBook } from "../../requests/book";
+import { BookApi, getBooks } from "../../requests/book";
 import Baner from "../search-input/search-bar";
 import { Bar } from "../side-bar/SideBar";
-import { Book } from "../book/Book";
+import { BookTab } from "../bookTab/BookTab";
 import "./style.css";
 
 export const Books = () => {
@@ -15,7 +15,7 @@ export const Books = () => {
   }));
 
   const bookList = (qeury?: string) =>
-    getBook(
+    getBooks(
       (data: Array<BookApi>) => dispatch({ type: "BOOKS", data: data }),
       qeury
     );
@@ -23,7 +23,7 @@ export const Books = () => {
   useEffect(() => {
     setStop(true);
     bookList();
-  }, [bookList, stop]);
+  }, [stop]);
 
   return (
     <div>
@@ -37,7 +37,7 @@ export const Books = () => {
           <Bar />
           <div className="book-conteiner">
             {books?.map((item: BookApi) => (
-              <Book
+              <BookTab
                 key={item.id}
                 id={item.id}
                 name={item.name}
