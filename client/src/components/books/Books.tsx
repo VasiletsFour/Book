@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { InitialState } from "../../redux/store";
 import { BookApi, getBooks } from "../../requests/book";
-import Baner from "../search-input/search-bar";
-import { Bar } from "../side-bar/SideBar";
-import { BookTab } from "../bookTab/BookTab";
+import { BookTab } from "../BookTab/BookTab";
+import Baner from "../SearchInput/search-bar";
+import { Bar } from "../SideBar/SideBar";
 import "./style.css";
 
 export const Books = () => {
-  const [stop, setStop] = useState(false);
   const dispatch = useDispatch();
+  const [stop, setStop] = useState(false);
   const { books } = useSelector((state: InitialState) => ({
     books: state.books,
   }));

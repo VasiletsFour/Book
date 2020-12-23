@@ -13,7 +13,7 @@ export const makeGetRequest = async(pathname:string)=>{
         headers: myHeaders
     };
 
-    return await fetch(`http://localhost:3000/api${pathname}`, requestOptions)
+    return await fetch(`http://localhost:8000/api${pathname}`, requestOptions)
         .then(response => response.json())
         .then(res => res.data)
         .catch(error => console.log('error', error));

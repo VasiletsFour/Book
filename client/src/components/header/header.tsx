@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getToken } from "../../utils/storage";
-import Signin from "../auth/auth";
+import { BOOKS } from "../../utils/urls";
+import Signin from "../Auth/auth";
 import "./style.css";
 
 export const Header = () => {
+  const history = useHistory();
   const [openLogin, setOpenLogin] = useState(false);
 
   return (
     <header className="header">
       {openLogin && <Signin closePopup={() => setOpenLogin(false)} />}
-      <div className="logotype">
+      <div className="logotype" onClick={() => history.push(BOOKS.urlTemplate)}>
         <img src="/img/logo.png" alt="logo" />
       </div>
       <div className="for-user">
