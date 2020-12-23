@@ -3,12 +3,14 @@ import { BookApi } from "../requests/book/api";
 export interface InitialState {
   books: null | Array<BookApi>;
   book: null | BookApi;
+  shoping: null | Array<BookApi>;
   role: "admin" | "user" | null;
 }
 
 const initialState: InitialState = {
   books: null,
   book: null,
+  shoping: null,
   role: null,
 };
 
@@ -18,6 +20,8 @@ export default function reducer(state: any = initialState, action: any) {
       return { ...state, books: action.data };
     case "BOOK":
       return { ...state, book: action.data };
+    case "SHOPING":
+      return { ...state, shoping: action.data };
     case "ROLE":
       return { ...state, role: action.data };
     default:

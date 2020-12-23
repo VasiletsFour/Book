@@ -86,6 +86,32 @@ export const book = async (id: string) => {
     }
 };
 
+export const shoping = async (shoping: Array<string>) => {
+    try {
+        const shopingMatch = {
+            $match:{
+                _id:[shoping]
+            }
+        }
+        const group = {
+            $group : {
+                "_id" : "$_id",
+                "posts" : { "$push": "$_id" }
+            }
+        }
+        const result = await EditionsModels.aggregate([shopingMatch, group, project])
+
+        return {
+            status: 200,
+            message: {
+                data: result
+            }
+        };
+    } catch (err) {
+        return { status: 400, message: { error: err } };
+    }
+};
+
 export const create = async (book: Edition) => {
     try {
         const date = timeStempCreate();

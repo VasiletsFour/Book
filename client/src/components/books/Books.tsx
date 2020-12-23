@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BookTab, LoadingSpinner, SideBar, TopBar } from "../";
 import { InitialState } from "../../redux/store";
@@ -8,7 +8,6 @@ import "./style.css";
 
 export const Books = () => {
   const dispatch = useDispatch();
-  const [stop, setStop] = useState(false);
   const { books } = useSelector((state: InitialState) => ({
     books: state.books,
   }));
@@ -20,9 +19,10 @@ export const Books = () => {
     );
 
   useEffect(() => {
-    setStop(true);
-    bookList();
-  }, [stop]);
+    !books && bookList();
+
+    console.log(books);
+  }, [books]);
 
   if (books) {
     return (

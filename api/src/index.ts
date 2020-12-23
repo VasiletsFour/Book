@@ -20,6 +20,7 @@ const createServer = () => {
         app.use(cors());
         app.use(morgan("dev"));
         app.use(bodyParser.json());
+        app.disable('etag');
         
         app.use((req, res, next) => {
             res.setHeader("Access-Control-Allow-Origin", "*"); 

@@ -41,6 +41,16 @@ export const book = async (id: string) => {
     return await repositore.book(id);
 };
 
+export const shoping = async (shoping: Array<string>) => {
+    logger.info(`>>>> bookService.find shoping books`);
+    if (!shoping) {
+        logger.error("find Books shoping, error");
+        return { status: 400, message: { error: "Empty shoping " } };
+    }
+
+    return await repositore.shoping(shoping);
+};
+
 export const create = async (book: Edition) => {
     logger.info(`>>>> bookService.create book = ${book.name}`);
     const validate = isValidated(book, BookSchema);

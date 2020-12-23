@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { query } from "winston";
 import * as service from "../services/service";
 
 export const books = async (req: Request, res: Response) => {
@@ -14,6 +13,15 @@ export const book = async (req: Request, res: Response) => {
 
     service
         .book(id)
+        .then((result) => res.status(result["status"]).send(result["message"]))
+        .catch((err) => res.send(err));
+};
+
+export const shoping = async (req: Request, res: Response) => {
+    const { shoping } = req.body;
+    
+    service
+        .shoping(shoping)
         .then((result) => res.status(result["status"]).send(result["message"]))
         .catch((err) => res.send(err));
 };

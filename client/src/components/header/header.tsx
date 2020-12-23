@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { getToken } from "../../utils/storage";
 import { BOOKS } from "../../utils/urls";
 import Signin from "../Auth/auth";
+import { SHOPING } from "../../utils/urls";
 import "./style.css";
 
 export const Header = () => {
@@ -25,7 +26,7 @@ export const Header = () => {
             <img src="/img/user.png" alt="user" />
           </button>
         )}
-        <Link to="/shoping">
+        <Link to={SHOPING.urlTemplate}>
           <div className="shoppingConteiner">
             <div className="count">0</div>
             <img src="/img/shoppingCart.png" alt="shooping" />
