@@ -9,10 +9,13 @@ interface Props {
   name: string;
   author: Array<any>;
   price: number;
+  currency: string;
 }
 
-export const BookTab = ({ id, name, author, price }: Props) => {
+export const BookTab = ({ id, name, author, price, currency }: Props) => {
   const history = useHistory();
+  const currencyCapitalized =
+    currency.charAt(0).toUpperCase() + currency.slice(1);
 
   return (
     <div onClick={() => history.push(BOOK.format({ id }))} className="cart">
@@ -23,7 +26,7 @@ export const BookTab = ({ id, name, author, price }: Props) => {
       <AuthorList className="author" author={author} />
       <p className="price" id="bookPrice">
         {price}
-        <span>Грн</span>
+        <span>{currencyCapitalized}</span>
       </p>
     </div>
   );

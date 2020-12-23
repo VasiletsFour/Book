@@ -1,19 +1,31 @@
+.booksSpinner{
+    margin-top: 220px;
+}
 .wrapperBooks{
     display: flex;
     flex-direction: column;
-    padding: 0 20px;
+    padding: 20px;
 }
-.bookTitle{
-    margin-top: 20px;
-    color:  #424141;
-    font-weight: 700;
+.booksContentWrapper{
+    width: 100%;
+
+}
+.booksTopBar{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: -100px;
+    margin-top: 10px;
+    width: 100%;
 }
 .book-conteiner{
-    margin-top: 15px;
+    margin-top: 20px;
     margin-left: 15px;
     width: 85%;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    padding: 0;
+}
+.booksContent{
+    display: flex;
 }

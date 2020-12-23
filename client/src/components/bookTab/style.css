@@ -1,4 +1,5 @@
 .cart{
+    margin-right: 120px;
     margin-top: 15px ;
     background: rgba(249, 249, 249, 0.98);
     width: 397.99px;
@@ -40,6 +41,7 @@
     line-height: 36px;
     color: #FF6825;
     padding: 0 0 42px 0;
+    white-space: nowrap;
 }
 .cart .price span{
     color: crimson;

@@ -5,31 +5,30 @@ import * as repositore from "../repositories/repositorie";
 import BookSchema from "../Schema/BookSchema.json";
 import UpdateSchema from "../Schema/UpdateSchema.json";
 
-export const books = async ({ page, word, authorName, date, min, max, price, type, currency }: Query) => {
+export const books = async ({ page, word, authorName, sortBy, min, max, type, currency }: Query) => {
     logger.info(`>>>> bookService.books`);
+    let date;
+    let price;
 
     !word && (word = "");
     !min && (min = 0);
     !max && (max = 10000);
 
-    switch (date) {
-        case "asc":
-            date = 1;
+    switch (sortBy) {
+        case undefined:
             break;
-        case "desc":
+        case "date":
             date = -1;
             break;
-    }
-    switch (price) {
-        case "asc":
-            price = 1;
-            break;
-        case "desc":
+        case "price:low":
             price = -1;
+            break;
+        case "price:high":
+            price = 1;
             break;
     }
 
-    return await repositore.books(page, word, authorName, date, Number(min), Number(max), price, type, currency);
+    return await repositore.books(page, word, authorName, price, date, Number(min), Number(max), type, currency);
 };
 
 export const book = async (id: string) => {

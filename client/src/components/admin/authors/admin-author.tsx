@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Baner from "../../SearchInput/search-bar";
-import Header from "../../Header/header";
+import Header from "../../Header/Header";
 import { Link } from "react-router-dom";
 
 class Author extends Component<

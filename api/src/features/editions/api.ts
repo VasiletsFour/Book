@@ -11,12 +11,11 @@ export interface Edition {
 
 export interface Query {
     page: number;
+    sortBy?:any
     authorName?: string;
     word?: string;
     min?:number,
     max?:number
-    date?: "asc" | "desc" | number;
-    price?: "asc" | "desc" | number;
     type: "book" | "news";
-    currency: "rub" | "dolar";
+    currency?: "rub" | "dolar";
 }

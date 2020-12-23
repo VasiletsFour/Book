@@ -10,15 +10,16 @@ export const books = async (
     page: number,
     word?: string,
     authorName?: string,
+    price?: number,
     date?: number,
     min?: number,
     max?: number,
-    price?: number,
     type?: string,
     currency?: string
 ) => {
     try {
         let authors = null;
+        const any = { $exists: true };
         const { start, limit } = pagination(10, Number(page));
 
         if (authorName) {
@@ -27,7 +28,7 @@ export const books = async (
             });
         }
 
-        const sort = { $sort: price ? { price } : date ? { date } : { name: 1 } };
+        const sort = { $sort: date ? { date } : price ? { price } : { date: 1 } };
 
         const match = {
             $match: {
@@ -37,7 +38,7 @@ export const books = async (
                 },
                 price: { $gte: min, $lte: max },
                 // type:type,
-                // currency:currency,
+                currency: currency ? currency : any,
                 // author_id: { $in: authors },
                 remove_book: false
             }

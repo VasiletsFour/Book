@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { BookTab, LoadingSpinner, SideBar, TopBar } from "../";
 import { InitialState } from "../../redux/store";
 import { BookApi, getBooks } from "../../requests/book";
-import { BookTab } from "../BookTab/BookTab";
 import Baner from "../SearchInput/search-bar";
-import { Bar } from "../SideBar/SideBar";
 import "./style.css";
 
 export const Books = () => {
@@ -25,29 +24,42 @@ export const Books = () => {
     bookList();
   }, [stop]);
 
-  return (
-    <div>
-      <Baner
-        page={"Book Catalog"}
-        callBack={(qeury: string) => bookList(qeury)}
-      />
-      <div className="wrapperBooks">
-        <h1 className="bookTitle">CATALOG</h1>
-        <div>
-          <Bar />
-          <div className="book-conteiner">
-            {books?.map((item: BookApi) => (
-              <BookTab
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                author={item.author}
-                price={item.price}
-              />
-            ))}
+  if (books) {
+    return (
+      <div>
+        <Baner
+          page={"Book Catalog"}
+          callBack={(qeury: string) => bookList(qeury)}
+        />
+        <div className="wrapperBooks">
+          <div className="booksContent">
+            <SideBar />
+            <div className="booksContentWrapper">
+              <div className="booksTopBar">
+                <TopBar />
+              </div>
+              <div className="book-conteiner">
+                {books?.map((item: BookApi) => (
+                  <BookTab
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    author={item.author}
+                    price={item.price}
+                    currency={item.currency}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    );
+  }
+
+  return (
+    <div className="booksSpinner">
+      <LoadingSpinner />
     </div>
   );
 };
