@@ -19,7 +19,7 @@ export const book = async (req: Request, res: Response) => {
 
 export const shoping = async (req: Request, res: Response) => {
     const { shoping } = req.body;
-    
+  
     service
         .shoping(shoping)
         .then((result) => res.status(result["status"]).send(result["message"]))

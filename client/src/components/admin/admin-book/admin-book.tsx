@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Baner from "../../SearchInput/search-bar";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Baner } from "../../";
 
 class AdminBook extends Component<
   any,

@@ -1,3 +1,7 @@
+.sideBarConteiener{
+  height: 100%;
+}
+
 .bar{
     padding: 20px 42px 40px 42px;
     position: relative;

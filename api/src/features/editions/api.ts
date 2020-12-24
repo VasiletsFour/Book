@@ -15,7 +15,7 @@ export interface EditionsWithId extends Edition{
 export interface Query {
     page: number;
     sortBy?:any
-    authorName?: string;
+    author?: string;
     word?: string;
     min?:number,
     max?:number

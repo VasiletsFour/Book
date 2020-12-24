@@ -1,59 +1,61 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { BookApi, getBook, getBooks } from "../../requests/book";
+import { useHistory } from "react-router-dom";
+import { Input, Radio } from "../";
+import { BookApi, getBooks } from "../../requests/book";
 import "./style.css";
 
 export const SideBar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(3000);
+  const [type, setType] = useState();
 
   const handelCkick = () => {
+    const queryStr = `?${min ? `min=${min}&` : ""}${
+      max < 3000 ? `max=${max}` : ""
+    }`;
+
+    history.push({
+      search: queryStr,
+    });
+
     getBooks(
       (data: Array<BookApi>) => dispatch({ type: "BOOKS", data: data }),
-      `?${max ? `max=${max}` + "&" : ""}${min ? `min=${min}` : ""}`
+      queryStr
     );
   };
 
   return (
-    <div>
+    <div className="sideBarConteiener">
       <h1 className="bookTitle">CATALOG</h1>
       <div className="bar">
         <div className="radio-input">
           <h3>CATEGORY</h3>
-          <div className="radio-conteiner">
-            <input type="radio" name="cind" value="book" />
-            <p>Book</p>
-          </div>
-          <div className="radio-conteiner">
-            <input type="radio" name="cind" value="NewsPaper" />
-            <p>News Paper</p>
-          </div>
-          <div className="radio-conteiner">
-            <input type="radio" name="cind" value="Magazine" />
-            <p>Magazine</p>
-          </div>
+          <Radio className="radio-conteiner" name="cind" value="book" />
+          <Radio className="radio-conteiner" name="cind" value="newsPaper" />
+          <Radio className="radio-conteiner" name="cind" value="magazine" />
         </div>
         <div className="price-wrapper">
           <h3>PRICE, $</h3>
           <div className="price-input_wrapper">
-            <input
+            <Input
               type="number"
               value={min}
               min={0}
               max={3000}
-              onChange={(event: any) =>
+              handelChange={(event: any) =>
                 Number(event.target.value) < max &&
                 setMin(Number(event.target.value))
               }
             />
-            <input
+            <Input
               type="number"
               value={max}
               min={0}
               max={3000}
-              step={100}
-              onChange={(event: any) =>
+              handelChange={(event: any) =>
                 Number(event.target.value) > min &&
                 setMax(Number(event.target.value))
               }
@@ -68,24 +70,22 @@ export const SideBar = () => {
             </button>
           </div>
           <section className="range-slider">
-            <input
+            <Input
               value={min}
               min={0}
               max={3000}
               type="range"
-              step={100}
-              onChange={(event: any) =>
+              handelChange={(event: any) =>
                 Number(event.target.value) < max &&
                 setMin(Number(event.target.value))
               }
             />
-            <input
+            <Input
               value={max}
               min={0}
               max={3000}
-              step={100}
               type="range"
-              onChange={(event: any) =>
+              handelChange={(event: any) =>
                 Number(event.target.value) > min &&
                 setMax(Number(event.target.value))
               }

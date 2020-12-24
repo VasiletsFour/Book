@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Baner from "../../SearchInput/search-bar";
+import { Baner } from "../../";
 
 class User extends Component<
   any,

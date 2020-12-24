@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Baner from "../../SearchInput/search-bar";
+import { Baner } from "../../";
 import Header from "../../Header/Header";
 import { Link } from "react-router-dom";
 

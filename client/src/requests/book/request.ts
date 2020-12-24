@@ -1,4 +1,5 @@
-import {makeGetRequest, makePostRequest  } from "../../api/api";
+import { makeGetRequest, makePostRequest } from "../../api/api";
+import { ShopingBody } from "./api";
 
 export const getBooks = async(callBack:CallableFunction, query?:string)=>{
     const result = await makeGetRequest(`/book/${query?query:""}`)
@@ -12,7 +13,7 @@ export const getBook = async(callBack:CallableFunction, id:string)=>{
     callBack(result)
 }
 
-export const postShoping = async(callBack:CallableFunction, data:Array<string>)=>{
+export const postShoping = async(callBack:CallableFunction, data:ShopingBody)=>{
     const result = await makePostRequest(`/book/shoping`, data)
     
     callBack(result)

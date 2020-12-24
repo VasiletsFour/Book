@@ -1,21 +1,28 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { BookApi, getBooks } from "../../requests/book";
-import { Select } from "../Select/Select";
+import { Select } from "../";
 import "./style.css";
 
 export const TopBar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [currency, setCurrency] = React.useState("");
   const [sortBy, setSortBy] = React.useState("");
 
   React.useEffect(() => {
     if (currency || sortBy) {
+      const queryStr = `?${currency ? `currency=${currency}&` : ""}${
+        sortBy ? `sortBy=${sortBy}` : ""
+      }`;
+      history.push({
+        search: queryStr,
+      });
+
       getBooks(
         (data: Array<BookApi>) => dispatch({ type: "BOOKS", data: data }),
-        `?${currency ? `currency=${currency}` + "&" : ""}${
-          sortBy ? `sortBy=${sortBy}` : ""
-        }`
+        queryStr
       );
     }
   }, [currency, sortBy]);

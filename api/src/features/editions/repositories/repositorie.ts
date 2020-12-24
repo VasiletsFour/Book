@@ -9,7 +9,7 @@ import { lookUp, project } from "../pipeline";
 export const books = async (
     page: number,
     word?: string,
-    authorName?: string,
+    author?: string,
     price?: number,
     date?: number,
     min?: number,
@@ -18,7 +18,6 @@ export const books = async (
     currency?: string
 ) => {
     try {
-        let authors = null;
         const any = { $exists: true };
         const { start, limit } = pagination(10, Number(page));
 
@@ -33,7 +32,7 @@ export const books = async (
                 price: { $gte: min, $lte: max },
                 // type:type,
                 currency: currency ? currency : any,
-                // author_id: { $in: authors },
+                author_id: author ? mongoose.Types.ObjectId(author) : any,
                 remove_book: false
             }
         };
@@ -60,7 +59,7 @@ export const books = async (
 
 export const book = async (id: string) => {
     try {
-        const result = await EditionsModels.find({_id:id, remove_book: false}).populate("author_id")
+        const result = await EditionsModels.findOne({_id:id, remove_book: false}).populate("author_id")
 
         return {
             status: 200,

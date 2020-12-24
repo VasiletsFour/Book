@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BookTab, LoadingSpinner, SideBar, TopBar } from "../";
+
+import { useHistory } from "react-router-dom";
+import { Baner, BookTab, LoadingSpinner, SideBar, TopBar } from "../";
 import { InitialState } from "../../redux/store";
 import { BookApi, getBooks } from "../../requests/book";
-import Baner from "../SearchInput/search-bar";
 import "./style.css";
 
 export const Books = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const search = history.location.search;
   const { books } = useSelector((state: InitialState) => ({
     books: state.books,
   }));
@@ -19,10 +22,8 @@ export const Books = () => {
     );
 
   useEffect(() => {
-    !books && bookList();
-
-    console.log(books);
-  }, [books]);
+    bookList(search && search);
+  }, [search]);
 
   if (books) {
     return (

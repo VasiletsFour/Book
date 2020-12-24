@@ -28,11 +28,13 @@ export const makeGetRequest = async (pathname: string) => {
   return await fetch(`http://localhost:8000/api${pathname}`, requestOptions)
     .then((response) => response.json())
     .then((res) => res.data)
-    .catch((error) => console.log("error", error));
+    .catch((error) => console.error("error", error));
 };
 
 export const makePostRequest = async (pathname: string, data: any) => {
   const myHeaders = new Headers();
+
+  myHeaders.append("Content-Type", "application/json");
 
   if (getToken()) {
     myHeaders.append(
@@ -54,7 +56,7 @@ export const makePostRequest = async (pathname: string, data: any) => {
   };
 
   return await fetch(`http://localhost:8000/api${pathname}`, requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
+    .then((response) => response.json())
+    .then((res) => res.data)
+    .catch((error) => console.error("error", error));
 };

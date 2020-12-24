@@ -7,13 +7,13 @@ interface Props {
   callBack: (qeury: string) => void;
 }
 
-function Baner({ page, callBack }: Props) {
+export const Baner = ({ page, callBack }: Props) => {
   const [name, setNmae] = useState("");
 
-  function search(event: any) {
+  const search = (event: any) => {
     setNmae(event.target.value);
     callBack(`?word=${event.target.value}`);
-  }
+  };
 
   return (
     <div className="conteiner">
@@ -29,6 +29,4 @@ function Baner({ page, callBack }: Props) {
       </form>
     </div>
   );
-}
-
-export default Baner;
+};

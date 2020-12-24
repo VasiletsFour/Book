@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { InitialState } from "../../redux/store";
 import { BookApi, getBook } from "../../requests/book";
-import { LoadingSpinner } from "../Spinner/Spinner";
+import { useHistory } from "react-router-dom";
+import { setBookStorage, getBookStorage } from "../../utils/storage";
 import { AuthorList } from "../AuthorList/AuthorList";
+import { LoadingSpinner } from "../Spinner/Spinner";
 import "./style.css";
 
 interface Params {
@@ -14,6 +16,8 @@ interface Params {
 export const Book = () => {
   let { id }: Params = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
+  const counstShoping = getBookStorage().length;
   const [count, setCount] = useState(1);
   const { book } = useSelector((state: InitialState) => ({
     book: state.book,
@@ -23,6 +27,12 @@ export const Book = () => {
     id &&
       getBook((book: BookApi) => dispatch({ type: "BOOK", data: book }), id);
   }, []);
+
+  const addBook = () => {
+    setBookStorage(id || "1");
+
+    counstShoping !== getBookStorage().length && history.go(0);
+  };
 
   if (book) {
     return (
@@ -63,12 +73,12 @@ export const Book = () => {
                     ${count ? count * book.price : book.price}
                   </p>
                 </div>
-                <button className="book-add_btn">
+                <button className="book-add_btn" onClick={() => addBook()}>
                   <img
                     src="/img/shoppingCart.png"
                     className="book-btn_icon"
                     alt="shooping"
-                  />{" "}
+                  />
                   Add to cart
                 </button>
               </div>

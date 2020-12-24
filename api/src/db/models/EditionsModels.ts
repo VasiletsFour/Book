@@ -46,6 +46,9 @@ const EditionSchema = new Schema({
 EditionSchema.set('toJSON', {
     transform: (doc, ret, options) => {
         ret.id = ret._id;
+        ret.author = ret.author_id
+
+        delete ret.author_id
         delete ret.remove_book
         delete ret._id;
         delete ret.__v;

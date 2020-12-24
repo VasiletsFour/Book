@@ -12,3 +12,7 @@ export interface BookAuthor{
     id:string
     name:string
 }
+
+export interface ShopingBody{
+    shoping:Array<string>
+}

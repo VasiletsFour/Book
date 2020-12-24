@@ -4,6 +4,7 @@ import { getToken } from "../../utils/storage";
 import { BOOKS } from "../../utils/urls";
 import Signin from "../Auth/auth";
 import { SHOPING } from "../../utils/urls";
+import { getBookStorage } from "../../utils/storage";
 import "./style.css";
 
 export const Header = () => {
@@ -28,7 +29,7 @@ export const Header = () => {
         )}
         <Link to={SHOPING.urlTemplate}>
           <div className="shoppingConteiner">
-            <div className="count">0</div>
+            <div className="count">{getBookStorage().length}</div>
             <img src="/img/shoppingCart.png" alt="shooping" />
           </div>
         </Link>
