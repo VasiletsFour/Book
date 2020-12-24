@@ -9,6 +9,9 @@ export interface Edition {
     remove_book: boolean;
 }
 
+export interface EditionsWithId extends Edition{
+    _id:string
+}
 export interface Query {
     page: number;
     sortBy?:any

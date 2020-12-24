@@ -88,18 +88,16 @@ export const book = async (id: string) => {
 
 export const shoping = async (shoping: Array<string>) => {
     try {
-        const shopingMatch = {
-            $match:{
-                _id:[shoping]
+        const idObject = shoping.map((item: string) => mongoose.Types.ObjectId(item))
+        
+        const match = {
+            $match: {
+                _id: { $in: idObject },
+                remove_book: false
             }
         }
-        const group = {
-            $group : {
-                "_id" : "$_id",
-                "posts" : { "$push": "$_id" }
-            }
-        }
-        const result = await EditionsModels.aggregate([shopingMatch, group, project])
+
+        const result = await EditionsModels.aggregate([match, lookUp, project]);
 
         return {
             status: 200,

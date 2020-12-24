@@ -28,7 +28,8 @@ const EditionSchema = new Schema({
     author_id: [
         {
             type: Schema.Types.ObjectId,
-            required: true
+            required: true,
+            ref:"Author"
         }
     ],
     date: {

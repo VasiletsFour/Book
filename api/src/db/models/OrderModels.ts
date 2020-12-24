@@ -13,7 +13,8 @@ const OrderSchema = new Schema({
     items: {
         printing_editions_id: {
             type: Schema.Types.ObjectId,
-            required: true
+            required: true,
+            ref:"Edition"
         },
         count: {
             type: Number,
