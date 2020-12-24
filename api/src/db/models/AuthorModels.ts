@@ -13,5 +13,14 @@ const AuthorSchema = new Schema({
     }
 });
 
+AuthorSchema.set("toJSON", {
+    transform: (doc, ret, options) => {
+        ret.id = ret._id;
+        delete ret.remove_author;
+        delete ret._id;
+        delete ret.__v;
+    }
+}); 
+
 interface AuthorModel extends Author, Document {}
 export default model<AuthorModel>("Author", AuthorSchema);

@@ -22,12 +22,6 @@ export const books = async (
         const any = { $exists: true };
         const { start, limit } = pagination(10, Number(page));
 
-        if (authorName) {
-            authors = await AuthorModels.find({ name: authorName }).map((item: any) => {
-                return { _id: item._id };
-            });
-        }
-
         const sort = { $sort: date ? { date } : price ? { price } : { date: 1 } };
 
         const match = {
@@ -66,19 +60,12 @@ export const books = async (
 
 export const book = async (id: string) => {
     try {
-        const match = {
-            $match: {
-                _id: mongoose.Types.ObjectId(id),
-                remove_book: false
-            }
-        };
-
-        const result = await EditionsModels.aggregate([match, lookUp, project, { $limit: 1 }]);
+        const result = await EditionsModels.find({_id:id, remove_book: false}).populate("author_id")
 
         return {
             status: 200,
             message: {
-                data: result[0]
+                data: result
             }
         };
     } catch (err) {
@@ -88,17 +75,8 @@ export const book = async (id: string) => {
 
 export const shoping = async (shoping: Array<string>) => {
     try {
-        const idObject = shoping.map((item: string) => mongoose.Types.ObjectId(item))
+        const result = await EditionsModels.find({_id:{$in:shoping}}).populate("author_id")
         
-        const match = {
-            $match: {
-                _id: { $in: idObject },
-                remove_book: false
-            }
-        }
-
-        const result = await EditionsModels.aggregate([match, lookUp, project]);
-
         return {
             status: 200,
             message: {

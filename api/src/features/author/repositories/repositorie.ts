@@ -1,15 +1,18 @@
 import AuthorModel from "../../../db/models/AuthorModels";
 import { pagination } from "../../../helpers/pagination/pagination";
-import { Author, AuthorMap } from "../api";
+import { Author } from "../api";
 
 export const authors = async (page: number, name?: string) => {
     try {
         const { start, limit } = pagination(10, Number(page));
-        const filter = name && {
-            name: {
-                $regex: name,
-                $options: "i"
-            },
+        
+        const filter = {
+            name: name
+                ? {
+                      $regex: name,
+                      $options: "i"
+                  }
+                : { $exists: true },
             remove_author: false
         };
 
@@ -18,12 +21,7 @@ export const authors = async (page: number, name?: string) => {
         return {
             status: 200,
             message: {
-                data: result.map((item: AuthorMap) => {
-                    return {
-                        id: item._id,
-                        name: item.name
-                    };
-                })
+                data: result
             }
         };
     } catch (err) {

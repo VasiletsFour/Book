@@ -43,5 +43,14 @@ const EditionSchema = new Schema({
     }
 });
 
+EditionSchema.set('toJSON', {
+    transform: (doc, ret, options) => {
+        ret.id = ret._id;
+        delete ret.remove_book
+        delete ret._id;
+        delete ret.__v;
+    }
+}); 
+
 interface EditionModel extends Edition, Document {}
 export default model<EditionModel>("Edition", EditionSchema);
