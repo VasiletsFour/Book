@@ -29,3 +29,10 @@ export const setBookStorage = (book: string) => {
 
   window.localStorage.setItem("book", JSON.stringify(newBook));
 };
+
+export const removeBookStorage =(id:string)=>{
+    const books = getBookStorage()
+    const newBooks = books.filter((item:string)=> item !== id)
+
+    window.localStorage.setItem("book", JSON.stringify(newBooks))
+}

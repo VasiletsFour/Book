@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { BookTab, LoadingSpinner } from "../";
-
 import { InitialState } from "../../redux/store";
-import { BookApi, getBooks, postShoping } from "../../requests/book";
-import { getBookStorage } from "../../utils/storage";
+import { BookApi, postShoping } from "../../requests/book";
+import { getBookStorage, removeBookStorage } from "../../utils/storage";
 import "./style.css";
 
 export const Shoping = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const shopingStorage = getBookStorage();
   const { shoping } = useSelector((state: InitialState) => ({
     shoping: state.shoping,
@@ -23,7 +24,13 @@ export const Shoping = () => {
     }
   }, [shoping]);
 
-  if (!shopingStorage) {
+  const handelRemove = (event: any, id: string) => {
+    removeBookStorage(id);
+    event.stopPropagation();
+    history.go(0);
+  };
+
+  if (!shopingStorage || !shopingStorage.length) {
     return <h1>Empty</h1>;
   }
 
@@ -38,7 +45,14 @@ export const Shoping = () => {
             author={item.author}
             price={item.price}
             currency={item.currency}
-          />
+          >
+            <button
+              className="btnDelBook"
+              onClick={(event: any) => handelRemove(event, item.id)}
+            >
+              x
+            </button>
+          </BookTab>
         ))}
       </div>
     );
