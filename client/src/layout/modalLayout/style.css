@@ -1,0 +1,23 @@
+.modal {
+    position: absolute;
+    top:0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modalOpacity{
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.3;
+    background-color: black;
+}
+.modal__default {
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    /* background: rgba(255, 255, 255, .3); */
+    z-index: 100000;
+}

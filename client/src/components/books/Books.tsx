@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useHistory } from "react-router-dom";
 import { Baner, BookTab, LoadingSpinner, SideBar, TopBar } from "../";
 import { InitialState } from "../../redux/store";

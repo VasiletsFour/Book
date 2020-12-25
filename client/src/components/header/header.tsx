@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { getToken } from "../../utils/storage";
 import { BOOKS } from "../../utils/urls";
-import Signin from "../Auth/auth";
+import { Auth } from "../";
 import { SHOPING } from "../../utils/urls";
 import { getBookStorage } from "../../utils/storage";
 import "./style.css";
@@ -13,7 +13,7 @@ export const Header = () => {
 
   return (
     <header className="header">
-      {openLogin && <Signin closePopup={() => setOpenLogin(false)} />}
+      {openLogin && <Auth closePopup={() => setOpenLogin(false)} />}
       <div className="logotype" onClick={() => history.push(BOOKS.urlTemplate)}>
         <img src="/img/logo.png" alt="logo" />
       </div>

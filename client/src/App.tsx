@@ -8,6 +8,7 @@ import {
 import { BookPage, BooksPage, ShopingPage } from "../src/page";
 import "./style.css";
 import { BOOK, BOOKS, ROOT_URL, SHOPING } from "./utils/urls";
+import "./style/global.css";
 
 class App extends Component {
   render() {

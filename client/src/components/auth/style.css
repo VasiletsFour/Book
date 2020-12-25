@@ -16,6 +16,7 @@
     height: 100%;
 }
 .auth{
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
