@@ -9,6 +9,53 @@
     height: 100vh;
     z-index: 100;
 }
+.create-ucer_conteiner{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.auth form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+.auth form label{
+    font-weight: 600;
+    color: rgb(199, 199, 199);
+}
+.inputAuth{
+    padding-left: 8px;
+    width: 100%;
+    height: 40px;
+    background-color: #5f5e5e;
+    border: none;
+    border-radius: 2px;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+.auth-btn_conteiner{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.auth form button{
+    padding: 2px 20px;
+    border: none;
+    color: white;
+    background-color: #FF6825;
+    margin-top: 20px;
+}
+.create-ucer_conteiner p{
+    color: rgb(199, 199, 199);
+}
+.create-ucer_conteiner p span{
+    color: #FF6825;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 4px;
+}
 .opacity{
     opacity: 0.3;
     background-color: black;
@@ -24,13 +71,27 @@
     position: absolute;
     width: 754px;
     height: 900px;
-    background: #5D5C5C;
+    background: #4b4a4a;
 }
-.auth-conteiner button{
+.avatarConteiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-color:  #5f5e5e;
+}
+.avatarIcon{
+    font-size: 50px;
+    color:  #4b4a4a;
+}
+.authClouseBtn{
     float: right;
     color: #FF6825;
     font-size: 20px;
-    background: #5D5C5C;
+    background: transparent;
     border: 0;
     margin-right: 10px;
 }

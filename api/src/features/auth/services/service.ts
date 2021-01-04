@@ -1,18 +1,14 @@
 import { isValidated } from "../../../helpers/validate/validate";
 import { logger } from "../../utils/logger";
-import { Login, User } from "../api";
+import { Login, SignUp } from "../api";
 import * as rpositore from "../repositories/repositorie";
-import UserSchema from "../Shema/UserSchema.json";
+import SignInSchema from "../Shema/SignInSchema.json";
+import SignUpSchema from "../Shema/SignUpSchema.json";
 
-export const signUp = async (user: User) => {
+export const signUp = async (user: SignUp) => {
     logger.info(`>>>> userService.create() with: user = ${user}`);
 
-    if (user.role) {
-        logger.error(`register user, error: you cant create admin, user = ${JSON.stringify(user)}`);
-        return { status: 400, message: { error: "you cant create admin" } };
-    }
-
-    const validate = isValidated(user, UserSchema);
+    const validate = isValidated(user, SignUpSchema);
 
     if (!validate.valid) {
         logger.error(`register user, error: ${validate.errors}, user = ${JSON.stringify(user)}`);
@@ -24,8 +20,8 @@ export const signUp = async (user: User) => {
 
 export const signIn = async (user: Login) => {
     logger.info(`>>>> userService.login user = ${user}`);
-    const validate = isValidated(user, UserSchema);
-
+    const validate = isValidated(user, SignInSchema);
+    
     if (!validate.valid) {
         logger.error(`register user, error: ${validate.errors}, user = ${JSON.stringify(user)}`);
         return { status: 400, message: { error: validate.errors } };
@@ -33,3 +29,4 @@ export const signIn = async (user: Login) => {
 
     return await rpositore.signIn(user);
 };
+``

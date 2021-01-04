@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 import UserModel from "../../../db/models/UserModels";
 import { generateAccessToken, generateRefreshToken } from "../../../helpers/token/token";
-import { Login, User } from "../api";
+import { Login, SignUp } from "../api";
 
-export const signUp = async (user: User) => {
+export const signUp = async (user: SignUp) => {
     try {
         const checkUser = await UserModel.findOne({ email: user.email });
 
@@ -28,9 +28,9 @@ export const signUp = async (user: User) => {
     }
 };
 
-export const signIn = async ({ username, password }: Login) => {
+export const signIn = async ({ email, password }: Login) => {
     try {
-        const user = await UserModel.findOne({ username: username });
+        const user = await UserModel.findOne({ email: email });
 
         if (user === null) {
             return { status: 404, message: { error: "User not found" } };

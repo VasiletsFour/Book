@@ -6,7 +6,12 @@ export interface User {
     remover_user: boolean;
 }
 
+
 export interface Login {
-    username: string;
+    email: string;
     password: string;
 }
+export interface SignUp extends Login {
+    username: string;
+}
+

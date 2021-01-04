@@ -1,0 +1,20 @@
+{
+    "title": "SignIn",
+    "properties": {
+        "email": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 100
+        },
+        "password": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 100
+        }
+    },
+    "additionalProperties": false,
+    "requierd": [
+        "email",
+        "password"
+    ]
+}

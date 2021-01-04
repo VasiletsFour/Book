@@ -1,7 +1,7 @@
 FROM node:12-alpine as builder
 WORKDIR /usr/app
-copy package.json /usr/app/package.json
-RUN npm install --only=prod
+COPY package.json /usr/app/package.json
+RUN npm ci install --only=prod
 COPY ./usr/app
 RUN npm build
 
