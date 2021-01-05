@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { JsxElement } from "typescript";
 import { BOOK } from "../../utils/urls";
 import { AuthorList } from "../AuthorList/AuthorList";
 import "./style.css";

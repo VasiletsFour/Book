@@ -1,8 +1,102 @@
-.shopingLoadingSpiner{
-    margin-top: 220px;
+.shoping{
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 80%;
+    height: 800px;
+    background:white;
+}
+.shoping-top{
+    width: 100%;
+    height: 60px;
+    background-color:#bebebe ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+}
+.shoping-top li{
+    height: 100%;
+    padding: 0;
+    margin-top: 26px;
+    list-style-type: none;
+}
+.shopng-product{
+    display: flex;
+    width: 34%;
+}
+.shopng-product h3{
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.shopng-price{
+    display: flex;
+    width: 19%;
+}
+.shopng-qty{
+    text-align: center;
+    width: 15%;
+}
+.shopng-order{
+    text-align: center;
+    width: 15%;
+}
+.shopng-buy{
+    text-align: center;
+    width: 15%;
+}
+li p{
+    text-align: center;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.shopingList{
+    overflow-x: hidden;
+    height: 700px;
+    width: 100%;
 }
 
-.shoping{
-    padding: 20px 30px;
+.shopingList::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+.shopingBtnConteiner{
+    width: 100%;
+    height: 60px;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.totalPriceConteiner{
+    width: 100%;
+}
+.totalPrice{
+    font-weight: 500;
+    margin-right: 40px;
+    text-align: right;
+}
+
+.totalPrice span{
+    color: #FF6825;
+}
+
+.shopingBtn{
+    height: 40px;
+    width: 200px;
+    font-size: 15px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid  #FF6825;
+    font-weight: 500;
+}
+.shopingBtnCancel{
+    background-color: transparent;
+    color: gray;
+    border: 1px solid  #FF6825;
+}
+.shopingBtnBuy{
+    color: white;
+    background-color: #FF6825;
 }

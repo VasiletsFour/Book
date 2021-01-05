@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getToken } from "../../utils/storage";
+import { Shoping } from "../Shoping/Shoping";
 import { BOOKS } from "../../utils/urls";
 import { Auth } from "../";
-import { SHOPING } from "../../utils/urls";
-import { getBookStorage } from "../../utils/storage";
+import { getBookStorage, removeToken } from "../../utils/storage";
 import "./style.css";
 
 export const Header = () => {
   const history = useHistory();
   const [openLogin, setOpenLogin] = useState(false);
+  const [openShoping, setOpenShoping] = useState(false);
 
   return (
     <header className="header">
       {openLogin && <Auth closePopup={() => setOpenLogin(false)} />}
+      {openShoping && <Shoping clousePopup={() => setOpenShoping(false)} />}
       <div className="logotype" onClick={() => history.push(BOOKS.urlTemplate)}>
         <img src="/img/logo.png" alt="logo" />
       </div>
@@ -23,16 +25,14 @@ export const Header = () => {
             <p>Login</p>
           </button>
         ) : (
-          <button onClick={() => alert("logout")}>
+          <button onClick={() => removeToken()}>
             <img src="/img/user.png" alt="user" />
           </button>
         )}
-        <Link to={SHOPING.urlTemplate}>
-          <div className="shoppingConteiner">
-            <div className="count">{getBookStorage().length}</div>
-            <img src="/img/shoppingCart.png" alt="shooping" />
-          </div>
-        </Link>
+        <div className="shoppingConteiner" onClick={() => setOpenShoping(true)}>
+          <div className="count">{getBookStorage().length}</div>
+          <img src="/img/shoppingCart.png" alt="shooping" />
+        </div>
       </div>
     </header>
   );

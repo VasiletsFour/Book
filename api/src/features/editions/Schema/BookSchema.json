@@ -14,7 +14,7 @@
         "type": {
             "type": "string",
             "maxLength": 30,
-            "enum":["book", "news"]
+            "enum":["book", "news", "magazine"]
         },
         "price":{
             "type":"number",

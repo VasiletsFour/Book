@@ -5,10 +5,10 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import { BookPage, BooksPage, ShopingPage } from "../src/page";
+import { BookPage, BooksPage } from "../src/page";
 import "./style.css";
-import { BOOK, BOOKS, ROOT_URL, SHOPING } from "./utils/urls";
 import "./style/global.css";
+import { BOOK, BOOKS, ROOT_URL } from "./utils/urls";
 
 class App extends Component {
   render() {
@@ -17,7 +17,6 @@ class App extends Component {
         <Switch>
           <Route path={BOOKS.urlTemplate} component={BooksPage} />
           <Route path={BOOK.urlTemplate} component={BookPage} />
-          <Route path={SHOPING.urlTemplate} component={ShopingPage} />
           {window.location.pathname === ROOT_URL.urlTemplate && (
             <Redirect to={BOOKS.urlTemplate} />
           )}
